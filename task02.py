@@ -1,4 +1,3 @@
-
 from tkinter import *
 from math import *
 
@@ -37,37 +36,37 @@ def make_calc(operation):
     return Button(text=operation, bd=5, font=('Arial', 13),  command=calculate)
 
 def operation_sin(operation):
-    value = calc.get()
+    value = eval(calc.get())
     calc.delete(0, END)
     calc.insert(0, sin(float(value)))
 
 def operation_cos(operation):
-    value = calc.get()
+    value = eval(calc.get())
     calc.delete(0, END)
     calc.insert(0, cos(float(value)))
 
 def operation_tan(operation):
-    value = calc.get()
+    value = eval(calc.get())
     calc.delete(0, END)
     calc.insert(0, tan(float(value)))
 
 def operation_ctg(operation):
-    value = calc.get()
+    value = eval(calc.get())
     calc.delete(0, END)
     calc.insert(0, 1/tan(float(value)))
 
 def operation_lg(operation):
-    value = calc.get()
+    value = eval(calc.get())
     calc.delete(0, END)
     calc.insert(0, log10(float(value)))
 
 def operation_ln(operation):
-    value = calc.get()
+    value = eval(calc.get())
     calc.delete(0, END)
     calc.insert(0, log(float(value)))
 
 def operation_01(operation):
-    value = calc.get()
+    value = eval(calc.get())
     b=''
     n=int(value)
     while n> 0:
