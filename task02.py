@@ -1,6 +1,6 @@
 from tkinter import *
 from math import *
-
+import re
 def add_digit(digit):
     value = calc.get()+str(digit)
     calc.delete(0, END)
@@ -28,12 +28,18 @@ def create_clear_button(operation):
     return Button(text=operation, bd=5, font=('Arial', 13),  command=lambda :clear())
 
 def calculate():
-     value=calc.get()
-     calc.delete(0, END)
-     calc.insert(0, eval(value))
+     value = calc.get()
+     if ('%' in value):
+         nums = re.findall(r'\d+', value)
+         c=int(nums[0])/int(nums[1])*100
+         calc.delete(0, END)
+         calc.insert(0, str(c))
+     else:
+         calc.delete(0, END)
+         calc.insert(0, eval(value))
 
 def make_calc(operation):
-    return Button(text=operation, bd=5, font=('Arial', 13),  command=calculate)
+    return Button(text=operation, bd=5, font=('Arial', 13),   command =lambda :calculate())
 
 def operation_sin(operation):
     value = eval(calc.get())
@@ -64,6 +70,7 @@ def operation_ln(operation):
     value = eval(calc.get())
     calc.delete(0, END)
     calc.insert(0, log(float(value)))
+
 
 def operation_01(operation):
     value = eval(calc.get())
@@ -109,6 +116,7 @@ Button(text='Ctg', bd=5, font=('Arial', 13),  command=lambda : operation_ctg('Ct
 Button(text='Lg', bd=5, font=('Arial', 13),  command=lambda : operation_lg('Log')).grid(row=5, column=1, stick='wens', padx=5, pady=5)
 Button(text='ln', bd=5, font=('Arial', 13),  command=lambda : operation_ln('ln')).grid(row=5, column=2, stick='wens', padx=5, pady=5)
 Button(text='01', bd=5, font=('Arial', 13),  command=lambda : operation_01('01')).grid(row=5, column=4, stick='wens', padx=5, pady=5)
+
 
 make_calc('=').grid(row=4, column=2, stick='wens', padx=5, pady=5)
 create_clear_button('C').grid(row=4, column=1, stick='wens', padx=5, pady=5)
